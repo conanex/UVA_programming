@@ -1,3 +1,4 @@
+//It is 0.00s version in UVA 
 #include <iostream>
 #include <string>
 using namespace std;
@@ -6,38 +7,44 @@ int main(){
 					"7777777","88888888",
 					"999999999"};
 	string answer("");
-	int i,k,howmanycase,amplitude,frequrntly;
+	string temp("");
+	int i,k,m,howmanycase,amplitude,frequrntly;
 	
+
 	cin >> howmanycase ;
 
 	for(i=0;i<howmanycase;i++){
-		//cin.get();
 		cin >> amplitude;
 		cin >> frequrntly;
-		for(int m=0;m<frequrntly;m++){
+		temp = "";
+		if(frequrntly>0){
+			//First Round is for cache
 			for (k = 0; k < amplitude; ++k)
 			{
 				answer += str[k]+"\n";
-				//cout << str[k] << endl;
-				/*for (j = 0; j < k+1; ++j)
-				{
-					cout << k+1;
-				}
-				cout << endl;*/
+				temp += str[k]+"\n";
+
 			}
 			k-=2;
 			for (; k >= 0; --k)
 			{
 				answer += str[k]+"\n";
-				//cout << str[k] << endl;
-				/*for (j = 0; j < k+1; ++j)
-				{
-					cout << k+1;
-				}
-				cout << endl;*/
+				temp += str[k]+"\n";
 			}
-			if( (i != (howmanycase-1)) || (m!=frequrntly-1) ) answer+="\n";
-		}
+
+			answer+="\n";
+			temp+="\n";
+			
+			//After first round, everything is repeated 
+			for(m=1;m<frequrntly;m++){
+				answer += temp;
+				
+			}
+		}	
+	}
+	//Judge last new line charaters only onece to speed up
+	if( !answer.empty()  ){
+		answer.back()='\0';
 	}
 	cout << answer;
 	

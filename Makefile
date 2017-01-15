@@ -1,7 +1,7 @@
 N=0
 QUESTION=UVA$(N)
 CC=g++
-CFLAGS= -g  -Werror -ansi -Wall
+CFLAGS= -g  -Werror -ansi -Wall  -std=c++11
 EXEFOLDER=Execute
 
 all: $(QUESTION).o
